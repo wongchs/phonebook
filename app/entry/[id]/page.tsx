@@ -7,6 +7,10 @@ function getEntry(id: string) {
 export default async function Entry({ params }: { params: { id: string } }) {
   const entry = await getEntry(params.id);
 
+  if (!entry) {
+    return <div>No entry found</div>;
+  }
+
   return (
     <div>
         <p>{entry.id}</p>
