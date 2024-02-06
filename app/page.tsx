@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { prisma } from "./db";
-import { Entry } from "@/components/Entry";
+import { EntryList } from "@/components/EntryList";
 import { JSX } from "react";
 
 function getEntries() {
@@ -26,7 +26,9 @@ export default async function Home() {
               email: string;
             }
           ) => (
-            <Entry key={entry.id} {...entry} />
+            <Link key={entry.id} href={`/entry/${entry.name}`}>
+              <EntryList {...entry} />
+            </Link>
           )
         )}
       </ul>

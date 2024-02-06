@@ -7,7 +7,7 @@ type EntryProps = {
   email: string;
 };
 
-export function Entry({ id, name, phoneNo, email }: EntryProps) {
+export function EntryList({ id, name, phoneNo, email }: EntryProps) {
   return (
     <div key={id} className="entry">
       <h2>{name}</h2>
