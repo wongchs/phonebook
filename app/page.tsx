@@ -26,7 +26,7 @@ export default async function Home() {
               email: string;
             }
           ) => (
-            <Link key={entry.id} href={`/entry/${entry.name}`}>
+            <Link key={entry.id} href={`/entry/${entry.id}`}>
               <EntryList {...entry} />
             </Link>
           )
