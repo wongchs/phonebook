@@ -21,12 +21,18 @@ function Entry({ params }: { params: { id: string } }) {
   }, [params.id]);
 
   const handleUpdate = async () => {
-    await fetch(`/api/entry/${params.id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
+    const response = await fetch(`/api/entry/${params.id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData),
     });
-    setShowDialog(false);
+    if (response.ok) {
+      const updatedEntry = await response.json();
+      setEntry(updatedEntry);
+      setShowDialog(false);
+    } else {
+      console.log("error")
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
