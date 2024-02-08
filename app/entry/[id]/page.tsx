@@ -1,22 +1,29 @@
-import { prisma } from "@/app/db";
+"use client";
+import { useEffect, useState } from "react";
 
-function getEntry(id: string) {
-  return prisma.entry.findUnique({ where: { id } });
-}
+function Entry({ params }: { params: { id: string } }) {
+  const [entry, setEntry] = useState(null);
 
-export default async function Entry({ params }: { params: { id: string } }) {
-  const entry = await getEntry(params.id);
+  useEffect(() => {
+    async function fetchEntry() {
+      const response = await fetch(`/api/entry/${params.id}`);
+      const data = await response.json();
+      setEntry(data);
+    }
 
-  if (!entry) {
-    return <div>No entry found</div>;
-  }
+    fetchEntry();
+  }, [params.id]);
 
-  return (
+  return entry ? (
     <div>
-        <p>{entry.id}</p>
-        <p>{entry.name}</p>
-        <p>{entry.phoneNo}</p>
-        <p>{entry.email}</p>
+      <p>{entry.id}</p>
+      <p>{entry.name}</p>
+      <p>{entry.phoneNo}</p>
+      <p>{entry.email}</p>
     </div>
+  ) : (
+    <div>Loading...</div>
   );
 }
+
+export default Entry;
