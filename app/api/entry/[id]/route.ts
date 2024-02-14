@@ -28,12 +28,6 @@ export async function PUT(
     return NextResponse.error();
   }
 
-  const entry = await prisma.entry.findUnique({
-    where: {
-      id,
-    },
-  });
-
   const { name, phoneNo, email } = await request.json();
   const updatedEntry = await prisma.entry.update({
     where: { id },

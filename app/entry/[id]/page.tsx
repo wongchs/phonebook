@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 async function getEntry(id: string) {
   console.log(id);
   const res = await fetch(`http://localhost:3000/api/entry/${id}`);
@@ -17,6 +19,7 @@ async function Entry({ params }: { params: { id: string } }) {
       <p>{entry.name}</p>
       <p>{entry.phoneNo}</p>
       <p>{entry.email}</p>
+      <Link href={`/entry/${entry.id}/edit`}>Edit</Link>
     </div>
   ) : (
     <div>Loading...</div>
