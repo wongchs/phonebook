@@ -14,11 +14,11 @@ export default async function Home() {
 
   return (
     <>
-      <header className="flex justify-between mb-4 items-center">
+      <header className="flex justify-between items-center px-8 py-2">
         <h1 className="text-2xl">Entries</h1>
         <Link href="/new">New</Link>
       </header>
-      <ul className="pl-4">
+      <ul className="px-8">
         {entries.map(
           (
             entry: JSX.IntrinsicAttributes & {
@@ -28,7 +28,7 @@ export default async function Home() {
               email: string;
             }
           ) => (
-            <Link key={entry.id} href={`/entry/${entry.id}`}>
+            <Link key={entry.id} href={`/entry/${entry.id}`} className="px-2">
               <EntryList {...entry} />
             </Link>
           )

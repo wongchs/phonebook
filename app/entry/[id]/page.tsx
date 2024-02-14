@@ -14,11 +14,19 @@ async function Entry({ params }: { params: { id: string } }) {
   }
 
   return entry ? (
-    <div>
-      <p>{entry.id}</p>
-      <p>{entry.name}</p>
-      <p>{entry.phoneNo}</p>
-      <p>{entry.email}</p>
+    <div className="flex flex-col items-center justify-center w-screen h-screen">
+      <div className="flex gap-4">
+        <p>Name:</p>
+        <p>{entry.name}</p>
+      </div>
+      <div className="flex gap-4">
+        <p>Phone Number:</p>
+        <p>{entry.phoneNo}</p>
+      </div>
+      <div className="flex gap-4">
+        <p>Email:</p>
+        <p>{entry.email}</p>
+      </div>
       <Link href={`/entry/${entry.id}/edit`}>Edit</Link>
     </div>
   ) : (
