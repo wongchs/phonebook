@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { prisma } from "@/app/db";
+import DeleteButton from "@/components/DeleteButton";
 
 async function getEntry(id: string) {
   return prisma.entry.findUnique({ where: { id } });
@@ -28,6 +29,7 @@ async function Entry({ params }: { params: { id: string } }) {
         <p>{entry.email}</p>
       </div>
       <Link href={`/entry/${entry.id}/edit`}>Edit</Link>
+      <DeleteButton id={entry.id} />
     </div>
   ) : (
     <div>Loading...</div>
