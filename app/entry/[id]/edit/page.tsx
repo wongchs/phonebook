@@ -3,10 +3,7 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 
 async function getEntry(id: string) {
-  console.log(id);
-  const res = await fetch(`http://localhost:3000/api/entry/${id}`);
-  const data = await res.json();
-  return data;
+  return prisma.entry.findUnique({ where: { id } });
 }
 
 async function EditEntry(data: FormData) {
@@ -39,9 +36,12 @@ async function EditEntry(data: FormData) {
 }
 
 async function Page({ params }: { params: { id: string } }) {
-  console.log(params.id);
   const entry = await getEntry(params.id);
-  console.log(entry);
+
+  if (!entry) {
+    return <h1>loading</h1>;
+  }
+
   return (
     <div>
       <h1>Edit Entry</h1>

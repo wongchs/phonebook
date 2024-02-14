@@ -1,17 +1,17 @@
 import Link from "next/link";
+import { prisma } from "@/app/db";
 
 async function getEntry(id: string) {
-  console.log(id);
-  const res = await fetch(`http://localhost:3000/api/entry/${id}`);
-  const data = await res.json();
-  return data;
+  return prisma.entry.findUnique({ where: { id } });
 }
 
 async function Entry({ params }: { params: { id: string } }) {
   const entry = await getEntry(params.id);
   console.log(entry);
-  console.log(entry.id);
-  console.log(entry.name);
+  if (entry) {
+    console.log(entry.id);
+    console.log(entry.name);
+  }
 
   return entry ? (
     <div>

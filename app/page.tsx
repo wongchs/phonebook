@@ -10,6 +10,8 @@ function getEntries() {
 export default async function Home() {
   const entries = await getEntries();
 
+  console.log(entries)
+
   return (
     <>
       <header className="flex justify-between mb-4 items-center">
