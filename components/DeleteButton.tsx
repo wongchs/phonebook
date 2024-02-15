@@ -1,10 +1,16 @@
+"use client"
 import { deleteEntry } from "@/app/actions/entry";
 
 function DeleteButton({ id }: { id: string }) {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    await deleteEntry(id);
+  };
+
   return (
-    <form action={deleteEntry(id)}>
+    <form onSubmit={handleSubmit}>
       <input type="hidden" name="id" value={id} />
-      <button type="submit">Delete</button>
+      <button className="bg-red-300 p-2 rounded" type="submit">Delete</button>
     </form>
   );
 }

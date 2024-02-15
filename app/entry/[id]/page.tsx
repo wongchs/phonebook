@@ -1,6 +1,6 @@
 import Link from "next/link";
 import DeleteButton from "@/components/DeleteButton";
-import { getEntry } from "@/app/actions/entry";
+import { deleteEntry, getEntry } from "@/app/actions/entry";
 
 async function Entry({ params }: { params: { id: string } }) {
   const entry = await getEntry(params.id);
@@ -25,7 +25,12 @@ async function Entry({ params }: { params: { id: string } }) {
         <p>{entry.email}</p>
       </div>
       <Link href={`/entry/${entry.id}/edit`}>Edit</Link>
-      <DeleteButton id={entry.id} />
+      <Link
+        className="bg-red-700 p-2 rounded text-white"
+        href={`/entry/${entry.id}/delete`}
+      >
+        Delete
+      </Link>
     </div>
   ) : (
     <div>Loading...</div>
