@@ -1,10 +1,6 @@
 import Link from "next/link";
-import { prisma } from "@/app/db";
 import DeleteButton from "@/components/DeleteButton";
-
-async function getEntry(id: string) {
-  return prisma.entry.findUnique({ where: { id } });
-}
+import { getEntry } from "@/app/actions/entry";
 
 async function Entry({ params }: { params: { id: string } }) {
   const entry = await getEntry(params.id);

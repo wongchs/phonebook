@@ -1,10 +1,7 @@
 import { prisma } from "@/app/db";
 import { redirect } from "next/navigation";
 import Link from "next/link";
-
-async function getEntry(id: string) {
-  return prisma.entry.findUnique({ where: { id } });
-}
+import { getEntry } from "@/app/actions/entry";
 
 async function EditEntry(data: FormData) {
   "use server";
