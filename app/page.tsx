@@ -10,7 +10,7 @@ function getEntries() {
 export default async function Home() {
   const entries = await getEntries();
 
-  console.log(entries)
+  console.log(entries);
 
   return (
     <>
@@ -28,9 +28,7 @@ export default async function Home() {
               email: string;
             }
           ) => (
-            <Link key={entry.id} href={`/entry/${entry.id}`} className="px-2">
-              <EntryList {...entry} />
-            </Link>
+            <EntryList {...entry} />
           )
         )}
       </ul>

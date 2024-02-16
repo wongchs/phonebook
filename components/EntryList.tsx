@@ -1,4 +1,5 @@
-"use client";
+import Link from "next/link";
+import DeleteButton from "./DeleteButton";
 
 type EntryProps = {
   id: string;
@@ -7,12 +8,15 @@ type EntryProps = {
   email: string;
 };
 
-export function EntryList({ id, name, phoneNo, email }: EntryProps) {
+export async function EntryList({ id, name, phoneNo, email }: EntryProps) {
   return (
     <div key={id} className="px-2 border-solid border-2 border-zinc-900">
-      <h2>{name}</h2>
+      <Link href={`/entry/${id}`}>
+        <h2>{name}</h2>
+      </Link>
       <p>Phone Number: {phoneNo}</p>
       <p>Email: {email}</p>
+      <DeleteButton id={id} />
     </div>
   );
 }
