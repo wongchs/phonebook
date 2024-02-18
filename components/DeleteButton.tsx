@@ -6,7 +6,7 @@ function DeleteButton({ id }: { id: string }) {
   // console.log(deleteEntryWithId);
 
   return (
-    <form onSubmit={deleteEntryWithId}>
+    <form action={deleteEntryWithId}>
       <button className="bg-red-600 p-2 rounded">Delete</button>
     </form>
   );
