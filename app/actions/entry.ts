@@ -4,10 +4,10 @@ import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 
 export async function deleteEntry(id: string) {
-  console.log(id)
+  console.log(id);
   await prisma.entry.delete({ where: { id } });
   revalidatePath("/");
-  redirect('/')
+  redirect("/");
 }
 
 export async function getEntry(id: string) {
