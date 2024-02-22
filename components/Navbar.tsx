@@ -9,12 +9,16 @@ async function Navbar() {
   return (
     <header className="flex justify-between items-center px-8 py-2">
       <h1 className="text-2xl">Entries</h1>
-      {session?.user ? (
-        <UserAccountNav />
-      ) : (
-        <Link href="/sign-in">Sign in</Link>
-      )}
-      <Link href="/new">New</Link>
+      <div>
+        {session?.user ? (
+          <div className="flex justify-center items-center gap-4">
+            <Link href="/new">New</Link>
+            <UserAccountNav />
+          </div>
+        ) : (
+          <Link href="/sign-in">Sign in</Link>
+        )}
+      </div>
     </header>
   );
 }
