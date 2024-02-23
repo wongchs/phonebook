@@ -27,7 +27,7 @@ export default function Page() {
   return (
     <>
       <header className="flex justify-between mb-4 items-center">
-        <h1 className="text-2xl">New</h1>
+        <h1 className="text-2xl">New Entry</h1>
       </header>
       <form action={createEntry} className="flex gap-2 flex-col">
         <label>
