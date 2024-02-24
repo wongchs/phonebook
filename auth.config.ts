@@ -20,7 +20,9 @@ export const authConfig = {
         return false;
       } else if (isLoggedIn) {
         const isOnAuth =
-          nextUrl.pathname === "/login" || nextUrl.pathname === "/signup";
+          nextUrl.pathname === "/" ||
+          nextUrl.pathname === "/login" ||
+          nextUrl.pathname === "/signup";
         if (isOnAuth) return Response.redirect(new URL("/dashboard", nextUrl));
         return true;
       }
