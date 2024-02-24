@@ -1,37 +1,16 @@
 import Link from "next/link";
-import { db } from "./db";
-import { EntryList } from "@/components/EntryList";
-import { JSX } from "react";
 
-function getEntries() {
-  return db.entry.findMany();
-}
-
-export default async function Home() {
-  const entries = await getEntries();
-
-  console.log(entries);
-
+export default function Home() {
   return (
-    <>
-      <header className="flex justify-between items-center px-8 py-2">
-        <h1 className="text-2xl">Entries</h1>
-        <Link href="/new">New</Link>
-      </header>
-      <ul className="px-8">
-        {entries.map(
-          (
-            entry: JSX.IntrinsicAttributes & {
-              id: string;
-              name: string;
-              phoneNo: string;
-              email: string;
-            }
-          ) => (
-            <EntryList {...entry} />
-          )
-        )}
-      </ul>
-    </>
+    <div className="flex flex-col items-center justify-center min-h-screen py-2 space-y-2">
+      <h1 className="text-2xl">RetardBook</h1>
+      <p>Login before viewing your contacts.</p>
+      <Link
+        className="px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        href="/login"
+      >
+        Login
+      </Link>
+    </div>
   );
 }

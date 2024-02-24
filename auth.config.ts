@@ -11,7 +11,7 @@ export const authConfig = {
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
 
-      const isOnHome = nextUrl.pathname.startsWith("/new");
+      const isOnHome = nextUrl.pathname.startsWith("/");
 
       if (isOnHome) {
         if (isLoggedIn) return true;
