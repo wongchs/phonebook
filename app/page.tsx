@@ -1,10 +1,10 @@
 import Link from "next/link";
-import { prisma } from "./db";
+import { db } from "./db";
 import { EntryList } from "@/components/EntryList";
 import { JSX } from "react";
 
 function getEntries() {
-  return prisma.entry.findMany();
+  return db.entry.findMany();
 }
 
 export default async function Home() {

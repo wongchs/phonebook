@@ -1,4 +1,4 @@
-import { prisma } from "../db";
+import { db } from "../db";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 
@@ -19,7 +19,7 @@ async function createEntry(data: FormData) {
     throw new Error("invalid email");
   }
 
-  await prisma.entry.create({ data: { name, phoneNo, email } });
+  await db.entry.create({ data: { name, phoneNo, email } });
   redirect("/");
 }
 

@@ -1,4 +1,4 @@
-import { prisma } from "@/app/db";
+import { db } from "@/app/db";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { getEntry } from "@/app/actions/entry";
@@ -24,7 +24,7 @@ async function EditEntry(data: FormData) {
     throw new Error("invalid email");
   }
 
-  await prisma.entry.update({
+  await db.entry.update({
     where: { id },
     data: { name, phoneNo, email },
   });

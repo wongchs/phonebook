@@ -1,4 +1,4 @@
-import { prisma } from "@/app/db";
+import { db } from "@/app/db";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
@@ -10,7 +10,7 @@ export async function GET(
     return NextResponse.error();
   }
 
-  const entry = await prisma.entry.findUnique({
+  const entry = await db.entry.findUnique({
     where: {
       id,
     },
@@ -29,7 +29,7 @@ export async function PUT(
   }
 
   const { name, phoneNo, email } = await request.json();
-  const updatedEntry = await prisma.entry.update({
+  const updatedEntry = await db.entry.update({
     where: { id },
     data: { name, phoneNo, email },
   });
