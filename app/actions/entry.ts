@@ -15,6 +15,9 @@ export async function getEntries(userEmail: string) {
     where: {
       userId: userEmail,
     },
+    orderBy: {
+      name: "asc",
+    },
   });
 }
 
