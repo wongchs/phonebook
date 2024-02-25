@@ -1,15 +1,15 @@
-import Link from "next/link";
-import { db } from "../db";
 import { EntryList } from "@/components/EntryList";
 import { JSX } from "react";
 import Header from "@/components/Header";
-
-function getEntries() {
-  return db.entry.findMany();
-}
+import { auth } from "@/auth";
+import { getEntries } from "../actions/entry";
 
 export default async function Dashboard() {
-  const entries = await getEntries();
+  const session = await auth();
+  const userEmail = session?.user?.email || "";
+  const entries = await getEntries(userEmail);
+
+  console.log(session);
 
   console.log(entries);
 

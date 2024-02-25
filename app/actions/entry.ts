@@ -6,8 +6,16 @@ import { revalidatePath } from "next/cache";
 export async function deleteEntry(id: string) {
   console.log(id);
   await db.entry.delete({ where: { id } });
-  revalidatePath("/");
-  redirect("/");
+  revalidatePath("/dashboard");
+  redirect("/dashboard");
+}
+
+export async function getEntries(userEmail: string) {
+  return db.entry.findMany({
+    where: {
+      userId: userEmail,
+    },
+  });
 }
 
 export async function getEntry(id: string) {
@@ -45,6 +53,6 @@ export async function createEntry(data: FormData) {
       },
     },
   });
-  revalidatePath("/");
-  redirect("/");
+  revalidatePath("/dashboard");
+  redirect("/dashboard");
 }
