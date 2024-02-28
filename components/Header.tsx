@@ -10,11 +10,16 @@ const Header = () => {
   console.log(session);
 
   return (
-    <header className="flex justify-between items-center px-8 py-2">
+    <header className="bg-slate-50 dark:bg-gray-800 shadow-md px-4 py-2 flex justify-between items-center">
       <h1 className="text-2xl">Entries</h1>
       <div className="flex flex-row items-center gap-2">
         <Link href="/new">
-          <Button>New</Button>
+          <Button
+            variant="secondary"
+            className="h-[48px] rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3"
+          >
+            New
+          </Button>
         </Link>
         <form action={logout}>
           <button

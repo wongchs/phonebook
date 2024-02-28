@@ -8,9 +8,6 @@ export default async function Dashboard() {
   const userEmail = session?.user?.email || "";
   const entries = await getEntries(userEmail);
 
-  console.log(session);
-  console.log(entries);
-
   const groupedEntries: { [key: string]: any[] } = entries.reduce(
     (groups: { [key: string]: any[] }, entry) => {
       const letter = entry.name[0].toUpperCase();
@@ -26,10 +23,10 @@ export default async function Dashboard() {
   return (
     <>
       <Header />
-      <div className="px-8">
+      <div className="px-8 py-4 bg-gray-100">
         {Object.entries(groupedEntries).map(([letter, entries]) => (
-          <div key={letter}>
-            <h2>{letter}</h2>
+          <div key={letter} className="mb-4">
+            <h2 className="text-2xl font-bold mb-2">{letter}</h2>
             <ul>
               {entries.map((entry) => (
                 <EntryList key={entry.id} {...entry} />

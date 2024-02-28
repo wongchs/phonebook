@@ -10,13 +10,16 @@ type EntryProps = {
 
 export async function EntryList({ id, name, phoneNo, email }: EntryProps) {
   return (
-    <div key={id} className="px-2 border-solid border-2 border-zinc-900">
-      <Link href={`/entry/${id}`}>
-        <h2>{name}</h2>
+    <li key={id} className="border rounded-lg p-4 mb-2 bg-white shadow">
+      <Link
+        className="text-lg font-medium text-blue-600 hover:text-blue-800"
+        href={`/entry/${id}`}
+      >
+        {name}
       </Link>
-      <p>Phone Number: {phoneNo}</p>
-      <p>Email: {email}</p>
+      <p className="text-gray-600">Phone Number: {phoneNo}</p>
+      <p className="text-gray-600">Email: {email}</p>
       <DeleteButton id={id} />
-    </div>
+    </li>
   );
 }
