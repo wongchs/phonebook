@@ -59,3 +59,27 @@ export async function createEntry(data: FormData) {
   revalidatePath("/dashboard");
   redirect("/dashboard");
 }
+
+export async function editEntry(id: string, data: FormData) {
+  const name = data.get("name")?.valueOf();
+  const phoneNo = data.get("phoneNo")?.valueOf();
+  const email = data.get("email")?.valueOf();
+
+  if (typeof name !== "string" || name.length === 0) {
+    throw new Error("invalid name");
+  }
+  if (typeof phoneNo !== "string" || phoneNo.length === 0) {
+    throw new Error("invalid phoneNo");
+  }
+  if (typeof email !== "string" || email.length === 0) {
+    throw new Error("invalid email");
+  }
+
+  await db.entry.update({
+    where: { id },
+    data: { name, phoneNo, email },
+  });
+
+  revalidatePath("/dashboard");
+  redirect("/dashboard");
+}

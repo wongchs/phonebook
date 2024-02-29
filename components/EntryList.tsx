@@ -17,7 +17,7 @@ export async function EntryList({ id, name, phoneNo, email }: EntryProps) {
     >
       <div className="flex justify-between flex-col">
         <Link
-          className="text-lg font-medium text-blue-600 hover:text-blue-800"
+          className="text-lg font-medium mb-2 text-blue-600 hover:text-blue-800"
           href={`/entry/${id}`}
         >
           {name}
