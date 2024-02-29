@@ -1,10 +1,32 @@
 "use client";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { useToast } from "./ui/use-toast";
+import { useFormState } from "react-dom";
+import { useEffect } from "react";
 
-const EditForm = ({ entry, editEntryWithId }: { entry: any, editEntryWithId: any }) => {
+const EditForm = ({
+  entry,
+  editEntryWithId,
+}: {
+  entry: any;
+  editEntryWithId: any;
+}) => {
+  const initialState = { message: null, errors: {} };
+  const [state, dispatch] = useFormState(editEntryWithId, initialState);
+  const { toast } = useToast();
+
+  useEffect(() => {
+    if (!state.errors) {
+      toast({
+        title: "Success",
+        description: "Entry updated successfully",
+      });
+    }
+  }, [state, toast]);
+
   return (
-    <form action={editEntryWithId} className="flex gap-2 flex-col space-y-3">
+    <form action={dispatch} className="flex gap-2 flex-col space-y-3">
       <input type="hidden" name="id" value={entry.id} />
       <label className="flex flex-col gap-1">
         <span>Name</span>

@@ -60,7 +60,7 @@ export async function createEntry(data: FormData) {
   redirect("/dashboard");
 }
 
-export async function editEntry(id: string, data: FormData) {
+export async function editEntry(id: string, prevState: any, data: FormData) {
   const name = data.get("name")?.valueOf();
   const phoneNo = data.get("phoneNo")?.valueOf();
   const email = data.get("email")?.valueOf();
@@ -75,11 +75,14 @@ export async function editEntry(id: string, data: FormData) {
     throw new Error("invalid email");
   }
 
-  await db.entry.update({
-    where: { id },
-    data: { name, phoneNo, email },
-  });
-
+  try {
+    await db.entry.update({
+      where: { id },
+      data: { name, phoneNo, email },
+    });
+  } catch (error) {
+    return { error: "Failed to update entry" };
+  }
   revalidatePath("/dashboard");
   redirect("/dashboard");
 }
