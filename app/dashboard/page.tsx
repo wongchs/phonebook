@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import { auth } from "@/auth";
 import { getEntries } from "../actions/entry";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default async function Dashboard() {
   const session = await auth();
@@ -38,8 +39,14 @@ export default async function Dashboard() {
           ))
         ) : (
           <div className="flex justify-center items-center mt-8 flex-col gap-6">
-            <h1 className="text-2xl font-bold">You Do Not Have Any Contacts.</h1>
-            <Button className="px-4 py-6 rounded-md animate-bounce bg-sky-600 hover:bg-sky-800">Create New Contact</Button>
+            <h1 className="text-2xl font-bold">
+              You Do Not Have Any Contacts.
+            </h1>
+            <Link href="/new">
+              <Button className="px-4 py-6 rounded-md animate-bounce bg-sky-600 hover:bg-sky-800">
+                Create New Contact
+              </Button>
+            </Link>
           </div>
         )}
       </div>

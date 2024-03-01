@@ -1,12 +1,20 @@
 import Link from "next/link";
 import DeleteButton from "@/components/DeleteButton";
 import { deleteEntry, getEntry } from "@/app/actions/entry";
+import { ArrowBigLeft } from "lucide-react";
 
 async function Entry({ params }: { params: { id: string } }) {
   const entry = await getEntry(params.id);
 
   return entry ? (
     <div className="flex flex-col items-center justify-center w-screen h-screen bg-gray-100">
+      <Link
+        className="mb-4 inline-flex items-center text-blue-500 hover:text-blue-600"
+        href="/dashboard"
+      >
+        <ArrowBigLeft size={24} />
+        <span className="ml-1">Go Back</span>
+      </Link>
       <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
         <h1 className="text-2xl font-bold mb-4">{entry.name}</h1>
         <p className="text-gray-600 mb-2">Phone Number: {entry.phoneNo}</p>
